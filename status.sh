@@ -26,8 +26,12 @@ done
 AVG_TEMP=0
 let AVG_TEMP=TOT_TEMP/CORES
 
+#reports if integrated or dedicated gpu
+GPU=$(optimus-manager --print-mode | awk -F ' ' '{print $5}')
+
 #prints out data
 echo 'CPU: '$AVG_TEMP' C'
+echo 'GPU: '$GPU
 
 #clean up files
 rm values.txt tmp.txt tmp2.txt
