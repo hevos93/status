@@ -11,3 +11,4 @@ alias status=/$HOME/bins/status/status.sh
 ##Dependencies
 lm-sensors - Run through sensors-detect
 optimus-manager - To see which GPU is used
+nvidia-smi - To get GPU stats

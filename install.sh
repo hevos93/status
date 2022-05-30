@@ -1,6 +1,10 @@
 #!/bin/bash
 
-mkdir $HOME/bins/status
+
+if [ -z $HOME/bins/status ]
+then
+  mkdir $HOEM/bins/status
+fi
 
 cp status.sh $HOME/bins/status/
 
