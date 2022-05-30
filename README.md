@@ -19,3 +19,5 @@ lm-sensors - Run through sensors-detect
 optimus-manager - To see which GPU is used
 
 nvidia-smi - To get GPU stats
+
+vmstat - To get RAM stats

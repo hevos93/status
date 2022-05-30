@@ -48,7 +48,14 @@ then
   GPU_USAGE=$(nvidia-smi | awk '{if(NR==10) print $13'})
 fi
 
+#ram usage
+vmstat -s > vmstat.txt
 
+let TOTAL_MEM=$(cat vmstat.txt | awk '{if(NR==1) print $1}')/1000
+let USED_MEM=$(cat vmstat.txt | awk '{if(NR==2) print $1}')/1000
+
+awk -v v1=$TOTAL_MEM -v v2=$USED_MEM 'BEGIN { print (v2 / v1)*100 }' > ram.txt
+MEM_USAGE=$(cat ram.txt | awk -F '.' '{print $1}')
 
 #prints out data
 echo 'CPU TEMP: '$AVG_TEMP' C'
@@ -63,5 +70,9 @@ then
   echo 'GPU USAGE: '$GPU_USAGE
 fi
 
+printf '\n'
+
+echo 'RAM USAGE: '$MEM_USAGE'%'
+
 #clean up files
-rm values.txt tmp.txt tmp2.txt
+rm values.txt tmp.txt tmp2.txt vmstat.txt ram.txt
